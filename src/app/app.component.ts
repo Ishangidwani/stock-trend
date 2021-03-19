@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'stock-tracker';
+  stocks: Array<any> = [{
+    name: "RELIANCE",
+    key: "NSE:RELIANCE",
+    isChecked: true
+  },{
+    name: "HDFC Bank",
+    key: "NSE:HDFC",
+    isChecked: false
+  },{
+    name: "Apple",
+    key: "NASDAQ:AAPL",
+    isChecked: false
+  },{
+    name: "Yahoo",
+    key: "NASDAQ:YHOO",
+    isChecked: false
+  }]
 }

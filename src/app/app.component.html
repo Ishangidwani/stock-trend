@@ -1,9 +1,15 @@
 <div>
-  <div class="head">Stock trend</div>
+  <div class="head">Stock trend</div>  
   <mat-sidenav-container class="playground">
     <mat-grid-list cols="12" rowHeight="100vh">
       <mat-grid-tile colspan="2">
-        <div>List of stocks</div>
+        <div class="refresh">
+          <mat-label>Refresh in Seconds</mat-label>
+          <mat-select [(ngModel)]="refreshTimeInSec">
+            <mat-option *ngFor="let item of refreshList" [value]="item">{{item}}</mat-option>
+          </mat-select>      
+        </div>
+        <div>Stocks</div>
         <section class="stock-list">
           <ng-container *ngFor="let item of stocks;let i = index">
             <mat-checkbox class="stock-name" [(ngModel)]="item.isChecked">{{item.name}}</mat-checkbox>
@@ -12,11 +18,13 @@
 
       </mat-grid-tile>
       <mat-grid-tile colspan="10">
-        <ng-container *ngFor="let item of stocks;let i = index">
-          <ng-container *ngIf="item.isChecked">
-            <app-chart [name]="item.name"></app-chart>
+        <div class="chart-container">
+          <ng-container *ngFor="let item of stocks;let i = index">
+            <ng-container *ngIf="item.isChecked">
+              <app-chart [name]="item.name" [refreshTimeInSec]="refreshTimeInSec" [startValue]="item.start" [endValue]="item.end"></app-chart>
+            </ng-container>
           </ng-container>
-        </ng-container>
+        </div>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-sidenav-container>
